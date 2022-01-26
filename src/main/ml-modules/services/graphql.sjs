@@ -24,13 +24,11 @@ function get(context, params) {
 };
 
 function post(context, params, graphQlQueryStr) {
-    xdmp.log('POST invoked');
     xdmp.log('graphQlQueryStr=>\n' + graphQlQueryStr);
 
     const queryDocumentAst = callGraphQlParse(graphQlQueryStr.toString());
 
     xdmp.log("queryDocumentAst=>\n" + queryDocumentAst);
-    xdmp.log('params=>\n' + params);
 
     context.outputTypes = [];
     context.outputTypes.push('application/json');
@@ -38,7 +36,7 @@ function post(context, params, graphQlQueryStr) {
     context.outputHeaders = {'X-My-Header1' : 42, 'X-My-Header2': 'h2val' };
     return {
         query: graphQlQueryStr.toString(),
-        ast: queryDocumentAst.toString()
+        optic: queryDocumentAst.toString()
     }
 };
 
